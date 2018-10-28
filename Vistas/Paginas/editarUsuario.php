@@ -1,6 +1,9 @@
 <?php  
     $controller = new MvcController();
     $info_user = $controller->getInfoUserController($_GET['id']);
+    if(isset($_POST['nombre'])){
+        $controller->updateUserController($_GET['id']);
+    }
 ?>
 
 

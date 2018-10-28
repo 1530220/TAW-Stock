@@ -3,7 +3,7 @@
 		//function con el parametro $enlacesModel que se recibe a travez del controlador
 		public function enlacesPaginasModel($enlacesModel){
 			//validar 
-			if($enlacesModel=="verProductos" || $enlacesModel == "verUsuarios" || $enlacesModel == "agregarUsuario" || $enlacesModel == "verPerfil" || $enlacesModel=="editarUsuario"){
+			if($enlacesModel=="verProductos" || $enlacesModel == "verUsuarios" || $enlacesModel == "agregarUsuario" || $enlacesModel == "verPerfil" || $enlacesModel=="editarUsuario" || $enlacesModel=="eliminarUsuario"){
 				//mostramos el URL concatenado con $enlacesModel
 				$module = "Paginas/".$enlacesModel.".php";
 			}

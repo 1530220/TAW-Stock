@@ -2,6 +2,7 @@
     $controller = new MvcController();
 
     $usuarios = $controller->getUsersController();
+
 ?>
 
 <div class="main-body">
@@ -51,7 +52,7 @@
                                         <td>
                                             <a href="?action=verPerfil&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-eye"></i></a>
                                             <a href="?action=editarUsuario&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-edit"></i></a>
-                                            <a href="#"><i class="btn btn-info btn-outline-info zmdi zmdi-delete"></i></a>
+                                            <a href="?action=eliminarUsuario&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-delete"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>

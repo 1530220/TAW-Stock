@@ -51,6 +51,65 @@
 			return $datos->getUsersModel($_SESSION['usuario']);
 		}
 
+		public function updateUserController($id){
+			$nombre = $_POST['nombre'];
+			$paterno = $_POST['paterno'];
+			$materno = $_POST['materno'];
+			$email = $_POST['email'];
+			$contraseña1 = $_POST['contraseña1'];
+			$contraseña2 = $_POST['contraseña2'];
+
+			//arreglo para indicar las posibles extensiones de las imagenes que se admitiran
+			$extensiones = array('image/jpg','image/jpeg','image/png');
+			//indicar el tamaño maximo de la imagen que se permitira subir
+			$max = 1024 * 1024 * 8;
+			//variable para guardar la ruta temporal donde se almacena la imagen
+			$ruta_origen = $_FILES['imagen']['tmp_name'];
+			//variable para guardar la ruta que se desea tener para guardar la imagen
+			$ruta_destino = '../media/'.rand(0, 99999999999).$_FILES['imagen']['name'];
+
+			//se verifica que la imagen subida sea de extension indicada anteriormente, gracias a la variable type
+			if(in_array($_FILES['imagen']['type'],$extensiones)){
+				//se verifica que la imagen sea menor al tamañano maximo indicado
+				if($_FILES['imagen']['size']<$max){
+					//condicion para saber si se pudo subir la imagen a la ruta deseada
+					if(move_uploaded_file($ruta_origen,$ruta_destino)){			
+						//instanciar la clase datos
+						$registro = new Datos();
+
+						if($contraseña1==$contraseña2){
+							//condicion para validar que el modelo haya realizado el registro
+							if($registro->updateUsuarioModel($nombre,$paterno,$materno,$email,$contraseña1,$ruta_destino,$id)==true){
+								echo "<script>alert('Usuario actualizado exitosamente!')</script>";	
+							}else{
+								//mostrar un alerta para indicar que no se pudo realizar el registro
+								echo "<script>alert('No se ha podido editar el usuario')</script>";
+							}
+						}else{
+							echo "<script>alert('Las contraseñas no coinciden')</script>";
+						}						
+					}
+				}else{
+					//si la imagen es muy grande se indica al alumno
+					echo "<script>alert('Error. Tamaño de la imagen excedido')</script>";
+				}
+			}else{
+				$registro = new Datos();
+				$ruta_destino = "imagen";
+				if($contraseña1==$contraseña2){
+					//condicion para validar que el modelo haya realizado el update
+					if($registro->updateUsuarioModel($nombre,$paterno,$materno,$email,$contraseña1,$ruta_destino,$id)==true){
+						echo "<script>alert('Usuario actualizado exitosamente!')</script>";
+					}else{
+						//mostrar un alerta para indicar que no se pudo realizar el update
+						echo "<script>alert('No se ha podido editar el usuario')</script>";
+					}
+				}else{
+					echo "<script>alert('Las contraseñas no coinciden')</script>";
+				}
+			}
+		}
+
 		public function RegistrarUsuarioController(){
 			
 			$nombre = $_POST['nombre'];
