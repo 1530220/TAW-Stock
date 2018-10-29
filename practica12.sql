@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2018 a las 06:57:02
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 29-10-2018 a las 10:31:53
+-- Versión del servidor: 5.7.21
+-- Versión de PHP: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_inventario`
+-- Base de datos: `practica12`
 --
 
 -- --------------------------------------------------------
@@ -28,12 +28,20 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
-  `fecha_agregado` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `fecha_agregado` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -41,15 +49,27 @@ CREATE TABLE `categorias` (
 -- Estructura de tabla para la tabla `historiales`
 --
 
-CREATE TABLE `historiales` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `historiales`;
+CREATE TABLE IF NOT EXISTS `historiales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `producto` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `nota` varchar(300) NOT NULL,
+  `hora` time NOT NULL,
+  `nota` varchar(300) DEFAULT NULL,
   `referencia` varchar(100) NOT NULL,
-  `cantidad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cantidad` int(11) NOT NULL,
+  `tipo_registro` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `producto` (`producto`,`usuario`),
+  KEY `usuario` (`usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `historiales`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -57,16 +77,25 @@ CREATE TABLE `historiales` (
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `productos`;
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codigo` varchar(20) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `fecha_agregado` date NOT NULL,
-  `precio` int(11) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `categoria` int(11) NOT NULL,
-  `ruta_img` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ruta_img` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categoria` (`categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+
 
 -- --------------------------------------------------------
 
@@ -74,75 +103,26 @@ CREATE TABLE `productos` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
+  `paterno` varchar(50) NOT NULL,
+  `materno` varchar(100) NOT NULL,
   `nombre_usuario` varchar(30) NOT NULL,
   `password` varchar(50) NOT NULL,
   `correo` varchar(30) NOT NULL,
   `fecha_registro` date NOT NULL,
-  `ruta_img` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ruta_img` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Índices para tablas volcadas
+-- Volcado de datos para la tabla `usuarios`
 --
 
---
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `historiales`
---
-ALTER TABLE `historiales`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `producto` (`producto`,`usuario`),
-  ADD KEY `usuario` (`usuario`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `categoria` (`categoria`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `historiales`
---
-ALTER TABLE `historiales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+INSERT INTO `usuarios` (`id`, `nombre`, `paterno`, `materno`, `nombre_usuario`, `password`, `correo`, `fecha_registro`, `ruta_img`) VALUES
+(1, 'Miguel', 'Perez', 'Sanchez', 'admin', 'admin', 'admin@gmail.com', '2018-10-27', '../media/default/default.png'),
 
 --
 -- Restricciones para tablas volcadas

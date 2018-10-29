@@ -1,7 +1,9 @@
 <?php  
-    $controller = new MvcController();
+    $controller = new MvcController(); //controlador
+    //obtener la informacion de un usuario
     $info_user = $controller->getInfoUserController($_GET['id']);
     if(isset($_POST['nombre'])){
+        //mandar a actualizar con el metodo del controlador
         $controller->updateUserController($_GET['id']);
     }
 ?>

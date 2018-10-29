@@ -49,10 +49,11 @@
                                         <td><?php echo $usuario['nombre']." ".$usuario['paterno']." ".$usuario['materno'] ?></td>
                                         <td><?php echo $usuario['correo'] ?></td>
                                         <td><?php echo $usuario['fecha_registro'] ?></td>
-                                        <td>
+                                        <td><center>
                                             <a href="?action=verPerfil&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-eye"></i></a>
                                             <a href="?action=editarUsuario&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-edit"></i></a>
                                             <a href="?action=eliminarUsuario&id=<?php echo $usuario['id'] ?>"><i class="btn btn-info btn-outline-info zmdi zmdi-delete"></i></a>
+                                            </center>
                                         </td>
                                     </tr>
                                 <?php } ?>

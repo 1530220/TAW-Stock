@@ -37,9 +37,6 @@
                 <div class="col-sm-12">
                     <div class="login-card card-block auth-body mr-auto ml-auto">
                         <form method="post" class="md-float-material">
-                            <div class="text-center d-none d-lg-block  d-xl-block">
-                                <img src="assets/images/auth/inventario.png" alt="logo.png">
-                            </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
@@ -61,26 +58,20 @@
                                         <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Acceder</button>
                                     </div>
                                 </div>
-                                <hr/>
                                 
                             </div>
                         </form>
-                        <!-- end of form -->
                     </div>
-                    <!-- Authentication card end -->
                 </div>
-                <!-- end of col-sm-12 -->
             </div>
-            <!-- end of row -->
         </div>
-        <!-- end of container-fluid -->
 
     </section>
     
 
 
     <div class="footer bg-inverse">
-        <p class="text-center">Copyright &copy; 2018 TAW , Miguel Perez - Rodrigo Rojas.</p>
+        <p class="text-center">Copyright &copy; 2018 TAW. Miguel Perez - Rodrigo Rojas.</p>
     </div>
 
     <script type="text/javascript" src="../Diseños/components/jquery/js/jquery.min.js"></script>

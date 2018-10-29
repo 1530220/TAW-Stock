@@ -1,6 +1,7 @@
 <?php  
 	$controller = new MvcController();
 
+	//obtener productos, categoria y usuario, para despues usar la function count para cantidad de cada uno
 	$productos = $controller->getAllController("productos");
 	$categorias = $controller->getAllController("categorias");
 	$usuarios = $controller->getAllController("usuarios");
@@ -28,7 +29,7 @@
 				<div class="row">
 
 				<div class="col-sm-4">
-					<a href="#">
+					<a href="?action=verProductos">
 						<div class="card bg-c-pink text-white widget-visitor-card">
 						   <div class="card-block-small text-center">
 						        <h2><?php echo count($productos) ?></h2>
@@ -39,7 +40,7 @@
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#">
+					<a href="?action=verCategorias">
 						<div class="card bg-c-green text-white widget-visitor-card">
 						    <div class="card-block-small text-center">
 						        <h2><?php echo count($categorias) ?></h2>
@@ -50,7 +51,7 @@
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#">
+					<a href="?action=verUsuarios">
 						<div class="card bg-c-yellow text-white widget-visitor-card">
 						    <div class="card-block-small text-center">
 						        <h2><?php echo count($usuarios) ?></h2>

@@ -1,19 +1,19 @@
 
 <?php  
     $controller = new MvcController();
-    //flag para saber si se ha borrado el usuario
+    //bandera para cuando ya se ha realizado la eliminacion de la categoria
     $flag = 0;
     $id = $_GET['id'];
     if(isset($_POST['contraseña'])){
-        //obtner la contraseña ingresada
+        //obtenr la contraseña ingresada
         $contraseña = $_POST['contraseña'];
-        //validar que se correcta
+        //validar que sea correcta
         if($contraseña==$_SESSION['contraseña']){
-            //borrar usuario
-            if($controller->deleteUserController($id)==true){
+            //proceder a ejecutar el metodo del controlador para borrar una categoria
+            if($controller->deleteCategoriaController($id)==true){
                 $flag=1;
             }else{
-                echo "<script>alert('No se ha podido eliminar el usuario. Vuelve a intentarlo')</script>";  
+                echo "<script>alert('No se ha podido eliminar la categoria. Vuelve a intentarlo')</script>";  
             }
         }else{
             echo "<script>alert('Contraseña incorrecta. Vuelve a intentarlo')</script>";
@@ -26,16 +26,16 @@
 
     	<div class="page-header-title">
             <div class="d-inline">
-                <h3>Eliminar Usuario</h3>
+                <h3>Eliminar Categoria</h3>
             </div>
         </div>
         <div class="page-header-breadcrumb">
             <ul class="breadcrumb-title">
                 <li class="breadcrumb-item">
-                    <a href="#"> <i class="icofont icofont-user"></i> </a>
+                    <a href="#"> <i class="ti ti-pin-alt"></i> </a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">Usuarios</a> </li>
-                <li class="breadcrumb-item"><a href="#">Eliminar Usuario</a> </li>
+                <li class="breadcrumb-item"><a href="#">Categorias</a> </li>
+                <li class="breadcrumb-item"><a href="#">Eliminar Categoria</a> </li>
             </ul>
         </div>
 
@@ -47,19 +47,19 @@
                     <div class="alert alert-warning icons-alert">
                         <center>
                             <p>Contraseña correcta.</p>
-                            <strong>Usuario eliminado exitosamente</strong>
+                            <strong>Categoria eliminada exitosamente</strong>
                         </center>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-4"></div>
                         <div class="col-sm-6">
-                            <a href="?action=verUsuarios" class="btn btn-warning btn-round col-sm-8">Volver</a>
+                            <a href="?action=verCategorias" class="btn btn-warning btn-round col-sm-8">Volver</a>
                         </div>
                     </div>
                 </div>
                 <?php }else{ ?>
                 <div class="card-header">
-                    <span>Favor de ingresar la contraseña del usuario en sesion para proceder a eliminar al usuario seleccionado</span>
+                    <span>Favor de ingresar la contraseña del usuario en sesion para proceder a eliminar la categoria seleccionada</span>
                 </div>  
                 <br>
                 <div class="card-block">

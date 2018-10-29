@@ -27,6 +27,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="../Diseños/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="../Diseños/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../Diseños/assets/pages/foo-table/css/footable.bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="../Diseños/components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../Diseños/assets/pages/data-table/css/buttons.dataTables.min.css">
@@ -87,11 +88,6 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                        <a href="#">
-                                            <i class="ti-user"></i> Perfil
-                                        </a>
-                                    </li>
-                                    <li>
                                     <a href="logout.php">
                                         <i class="ti-layout-sidebar-left"></i> Cerrar Sesion
                                     </a>
@@ -148,6 +144,8 @@
 <script type="text/javascript"
         src="../Diseños/components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="../Diseños/components/jquery-i18next/js/jquery-i18next.min.js"></script>
+<script src="../Diseños/assets/pages/foo-table/js/footable.min.js"></script>
+<script src="../Diseños/assets/pages/foo-table/js/foo-table-custom.js"></script>
 <!-- Custom js -->
 
 <script src="../Diseños/assets/js/pcoded.min.js"></script>

@@ -31,13 +31,13 @@
                         <span class="pcoded-mcaret"></span>    
                     </a>
                     <ul class="pcoded-submenu">
-                        <li class="">
+                        <li class="?action=verProductos">
                             <a href="?action=verProductos">
                                 <span class="pcoded-mtext">Ver Productos</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="?action=agregarProducto">
                                 <span class="pcoded-mtext">Agregar Producto</span>
                             </a>
                         </li>
@@ -51,12 +51,12 @@
                     </a>
                     <ul class="pcoded-submenu">
                         <li class="">
-                            <a href="">
+                            <a href="?action=verCategorias">
                                 <span class="pcoded-mtext">Ver Categorias</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="?action=agregarCategoria">
                                 <span class="pcoded-mtext">Agregar Categoria</span>
                             </a>
                         </li>
