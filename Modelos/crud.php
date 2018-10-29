@@ -316,6 +316,7 @@
 		public function HistorialRemove($id,$cantidad){
 			//sentencia update
 			$sql = "UPDATE productos SET stock = stock - ? WHERE id = ?";
+			//se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
 			//se executa la sentencia
 			$stmt->execute(array($cantidad,$id));

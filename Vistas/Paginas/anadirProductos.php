@@ -1,5 +1,6 @@
 
 <?php  
+    //instancia del controlador
     $controller = new MvcController();
     //bandera para saber cuando ya se ha añadido el stock
     $flag = 0;
@@ -7,6 +8,7 @@
     if(isset($_POST['cantidad'])){
         //condicion para validar que se realize el registro del add en el stock
         if($controller->HistorialAddController($id)==true){
+            //se pudo realizar el cambio
             $flag=1;
         }else{
             echo "<script>alert('No se ha podido añadir el stock. Vuelve a intentarlo')</script>";
