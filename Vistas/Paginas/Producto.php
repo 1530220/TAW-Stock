@@ -1,10 +1,10 @@
 <?php 
-    $controller = new MvcController();
-    //obtener todos los usuario
+    $controller = new MvcController();//Crea la instancia del controlador
+    //Obtener todos los usuario
     $usuarios = $controller->getAllController("usuarios");
-    //obtener informacion del producto
+    //Obtener informacion del producto
     $producto = $controller->getInfoProductoController($_GET['id']);
-    //historial del producto
+    //Historial del producto
     $historial = $controller->getHistorialController($_GET['id']);
 ?>
 <div class="main-body">
@@ -113,7 +113,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($historial as $dato) { ?>
+                            <?php 
+                            //Recorre el arreglo de los datos del producto para mostrar el historial del producto
+                            foreach ($historial as $dato) { ?>
                                 <tr>
                                     <td><?php echo $dato['fecha'] ?></td>
                                     <td><?php echo $dato['hora'] ?></td>
@@ -128,6 +130,7 @@
                                         }
 
                                         $usuario_historial = "DESCONOCIDO";
+                                        //Recorre el arreglo de los datos del usuaio para mostrar el historial del usaurio
                                         foreach ($usuarios as $usuario ) {
                                             if($dato['usuario']==$usuario['id']){
                                                 $usuario_historial = $usuario['nombre'];

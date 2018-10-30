@@ -6,12 +6,14 @@
                 <div class="main-menu-header">
                     <img class="img-40 img-radius" src="<?php echo $_SESSION['imagen'] ?>" alt="User-Profile-Image">
                     <div class="user-details">
-                        <span><?php echo $_SESSION['usuario'] ?></span>
+                        <span><?php 
+                        //Iniciar sesión del usuario
+                        echo $_SESSION['usuario'] ?></span>
                         <span id="more-details">Usuario</span>
                     </div>
                 </div>
             </div>
-
+            <!-- AQUI SE MUESTRA EL MENU DE LA PLANTILLA DONDE SE VAN A PONER LOS APARTADOS REQUERIDOS Y ALGUNOS MEDIANTE EL ACTION MANDAN A LLAMAR LOS ENLACES PARA QUE SE PUEDA VISUALIZAR LAS VISTAS-->
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
             <ul class="pcoded-item pcoded-left-item">
 

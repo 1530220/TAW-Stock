@@ -1,7 +1,7 @@
 
 <?php  
-    $controller = new MvcController();
-    //flag para saber cuando ya se ha realizado la eliminacion del producto
+    $controller = new MvcController();//Llama la instancia del controlador
+    //Flag para saber cuando ya se ha realizado la eliminacion del producto
     $flag = 0;
     $id = $_GET['id'];
     if(isset($_POST['contraseña'])){
@@ -42,7 +42,9 @@
         <br><br>
         <div class="page-body">
         	<div class="card">
-                <?php if($flag==1){ ?>
+                <?php 
+                //Condición para poder eliminar el producto
+                if($flag==1){ ?>
                 <div class="card-block">
                     <div class="alert alert-warning icons-alert">
                         <center>

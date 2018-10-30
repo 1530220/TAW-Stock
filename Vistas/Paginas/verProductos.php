@@ -1,7 +1,7 @@
 <?php  
-    $controller = new  MvcController();
-    $productos = $controller->getAllController("productos");
-    $categorias = $controller->getAllController("categorias");
+    $controller = new  MvcController();//Crea la instancia del controlador
+    $productos = $controller->getAllController("productos");//Obtiene los datos de todos los productos
+    $categorias = $controller->getAllController("categorias");//Obtiene todos los datos de las categorias
 
 
 ?>
@@ -43,9 +43,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($productos as $producto){?>                    
+                                <?php 
+                                //Recorrer el arreglo de la tabla de los productos para obtener un producto por el id
+                                foreach ($productos as $producto){?>                    
                                 <?php 
                                     $producto_categoria = "0";
+                                    //Recorrer el arreglo de la tabla de las categorias para obtener un producto por su categoria correspondiente
                                     foreach ($categorias as $categoria) {
                                             if($categoria['id']==$producto['categoria']){
                                                 $producto_categoria = $categoria['nombre'];

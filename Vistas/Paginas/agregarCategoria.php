@@ -1,6 +1,9 @@
 <?php  
+    //Una condición para enviar los datos de la categoria
     if($_POST){
+        //Manda llamar la instancia del controlador
         $guardarDatos = new MvcController();
+        //Llama la función de agregar la categoria
         $guardarDatos->agregarCategoria();
     }
 ?>
@@ -34,6 +37,7 @@
                         </div>    
                         <div class="card-block">
 
+                            <!--Crea el formulario del formulario de agregar categoria mediante el metodo post-->
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-2"></div>

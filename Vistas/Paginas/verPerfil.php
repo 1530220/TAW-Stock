@@ -1,6 +1,6 @@
 <?php  
-	$controller = new MvcController();
-
+	$controller = new MvcController();//Hace la instacia al controlador
+    //Consigue los datos de los usuarios
 	$info_user = $controller->getInfoUserController($_GET['id']);
 ?>
 

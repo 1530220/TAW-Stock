@@ -1,13 +1,13 @@
 
 <?php  
-    $controller = new MvcController();
-    //flag para despues de que se ha quitado productos
+    $controller = new MvcController();//Crea una instancia al controlador
+    //Flag para despues de que se ha quitado productos
     $flag = 0;
     $id = $_GET['id'];
-    //obtener informacion de producto para saber el maximo de productos a qitar
+    //Obtener informacion de producto para saber el maximo de productos a qitar
     $productos = $controller->getInfoProductoController($id);
     if(isset($_POST['cantidad'])){
-        //remover stock
+        //Remover stock
         if($controller->HistorialRemoveController($id)==true){
             $flag=1;
         }else{
@@ -38,7 +38,9 @@
         <br><br>
         <div class="page-body">
             <div class="card">
-                <?php if($flag==1){ ?>
+                <?php 
+                //Una condición para poder quitar del stock correctamente o no
+                if($flag==1){ ?>
                 <div class="card-block">
                     <div class="alert alert-success icons-alert">
                         <center>

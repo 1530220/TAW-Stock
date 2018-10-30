@@ -1,7 +1,7 @@
 <?php  
-    $controller = new MvcController();
+    $controller = new MvcController();//Crea la instancia del controlador
 
-    $usuarios = $controller->getUsersController();
+    $usuarios = $controller->getUsersController();//Obtiene los datos de los usuarios
 
 ?>
 
@@ -44,7 +44,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($usuarios as $usuario) { ?>
+                                <?php
+                                //Recorrer el arreglo de la tabla de los usaurios para obtener los datos del usuario
+                                 foreach ($usuarios as $usuario) { ?>
                                     <tr>
                                         <td><?php echo $usuario['nombre']." ".$usuario['paterno']." ".$usuario['materno'] ?></td>
                                         <td><?php echo $usuario['correo'] ?></td>

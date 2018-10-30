@@ -1,6 +1,6 @@
 <?php  
-    $controller = new MvcController();
-
+    $controller = new MvcController();//Hace la instacia al controlador
+    //Consigue los datos de las categorias
     $categorias = $controller->getAllController("categorias");
 
 ?>
@@ -44,7 +44,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($categorias as $categoria) { ?>
+                                <?php 
+                                //Recorre el arreglo de la tabla categorias para obtener los datos de la categoria
+                                foreach ($categorias as $categoria) { ?>
                                     <tr>
                                         <td><?php echo $categoria['nombre']?></td>
                                         <td><?php echo $categoria['descripcion'] ?></td>

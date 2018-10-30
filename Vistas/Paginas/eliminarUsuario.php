@@ -1,7 +1,7 @@
 
 <?php  
-    $controller = new MvcController();
-    //flag para saber si se ha borrado el usuario
+    $controller = new MvcController();//Llama la instancia del controlador
+    //Flag para saber si se ha borrado el usuario
     $flag = 0;
     $id = $_GET['id'];
     if(isset($_POST['contraseña'])){
@@ -42,7 +42,9 @@
         <br><br>
         <div class="page-body">
         	<div class="card">
-                <?php if($flag==1){ ?>
+                <?php 
+                //Una condición para si se el usaurio es el que va a eliminar
+                if($flag==1){ ?>
                 <div class="card-block">
                     <div class="alert alert-warning icons-alert">
                         <center>

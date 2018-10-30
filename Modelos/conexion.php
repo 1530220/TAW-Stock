@@ -1,11 +1,12 @@
 <?php  
-	//clase conexion que tiene el pdo a utilizar
+	//Clase conexion que tiene el pdo a utilizar
 	class Conexion{
 		public function conectar(){
+			//Crear una instancia de PDO para realizar la conexión
 			//host: localhost
 			//dbname : nombre de la base de datos
 			$pdo = new PDO("mysql:host=localhost;dbname=practica12","root","");
-			//se retorna el pdo
+			//Se retorna el PDO
 			return $pdo;
 		}
 	}

@@ -1,10 +1,10 @@
 <?php
-    //bandera para saber cuando ya se ha realizado la actualizacion del producto
+    //Bandera para saber cuando ya se ha realizado la actualizacion del producto
     $flag = 0;  
     $controller = new MvcController();
-    //obtener la informacion de un producto
+    //Obtener la informacion de un producto
     $producto = $controller->getInfoProductoController($_GET['id']);
-    //obtener la informacion de las categorias
+    //Obtener la informacion de las categorias
     $categorias = $controller->getAllController("categorias");
     if($_POST){
         if($controller->updateProductoController($_GET['id'])==true){
@@ -43,7 +43,10 @@
                         </div>    
                         <div class="card-block">
 
-                        <?php if($flag==0){ ?>
+                        <?php 
+                        //Condición para realizar el cambio
+                        if($flag==0){ ?>
+                            <!--Crea el formulario del formulario de editar producto mediante el metodo post y con ecriptación para poder guardar una imagen-->
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-2"></div>
@@ -64,7 +67,9 @@
                                     <label class="col-sm-3 col-form-label">Categoria:</label>
                                     <div class="col-sm-7">
                                         <select name="categoria" class="form-control form-control-center form-control-round">
-                                            <?php foreach ($categorias as $categoria) { ?>
+                                            <?php 
+                                            //Un ciclo para poder recorrer el arreglo de datos de los parametros de categoria
+                                            foreach ($categorias as $categoria) { ?>
                                                 <option value="<?php echo $categoria['id'] ?>"><?php echo $categoria['nombre'] ?></option>
                                             <?php } ?>
                                         </select>

@@ -1,20 +1,20 @@
 <?php  
-	//se requiere el archivo que contiene nuestra conexion por PDO
+	//Se requiere el archivo que contiene nuestra conexion por PDO
 	require_once "conexion.php";
 
-	//clase datos que hereda de la clase de conexion
+	//Clase datos que hereda de la clase de conexion
 	class Datos extends Conexion{
 
-		//metodo para verificar si el usuario que desea iniciar sesion  esta registrado
+		//Metodo para verificar si el usuario que desea iniciar sesion  esta registrado
 		public function Iniciar_Sesion($usuario,$contraseña){
-			//consulta en la tabla usuarios
+			//Consulta para seleccionar la tabla usuarios
 			$sql = "SELECT * FROM usuarios WHERE nombre_usuario = ? and password = ?";
-			//se prepara la consulta
+			//Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la consulta
+			//Se ejecuta la consulta
 			$stmt->execute(array($usuario,$contraseña));
 			$r = $stmt->fetch();
-
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{
@@ -22,35 +22,35 @@
 			}
 		}
 
-		//metodo para obtener toda la informacion de una tabla
+		//Metodo para obtener toda la informacion de una tabla
 		public function getAllModel($tabla){
-			//consulta
+			//Consulta para seleccionar la tabla
 			$sql = "SELECT * FROM $tabla";
-			//se prepara la consulta
+			//Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa la consulta
+			//Se executa la consulta
 			$stmt->execute();
-			//se asocian los registros a $r
+			//Se asocian los registros a $r
 			$r = $stmt->fetchAll();
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
-				//retornan los registros
 				return $r;
 			}else{
 				return [];
 			}
 		}
 
-		//metodo para obtener la informacion de un usuario
+		//Metodo para obtener la informacion de un usuario
 		public function getInfoUserModel($id){
-			//consulta, que tiene la clausula where para obtener solo registros del usuario con el id especifico
+			//Consulta, que tiene la clausula where para obtener solo registros del usuario con el id especifico
 			$sql = "SELECT * FROM usuarios WHERE id = ?";
-			//se prepara la consulta
+			//Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la consulta
+			//Se ejecuta la consulta
 			$stmt->execute(array($id));
-			//se asocian los registros a $r
+			//Se asocian los registros a $r
 			$r = $stmt->fetch();
-
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{
@@ -58,34 +58,35 @@
 			}
 		}
 
-		//metodo para obtener los usuarios menos uno en especifico
+		//Metodo para obtener los usuarios menos uno en especifico
 		public function getUsersModel($usuario){
-			//consulta para obtner los usuarios menos el que tiene como parametro de entrada el metodo
+			//Consulta para obtner los usuarios menos el que tiene como parametro de entrada el metodo
 			$sql = "SELECT * FROM usuarios WHERE nombre_usuario != ?";
-			//se prepara la consulta
+			//Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa la consulta
+			//Se executa la consulta
 			$stmt->execute(array($usuario));
-			//se asocian los registros a r
+			//Se asocian los registros a r
 			$r = $stmt->fetchAll();
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
-				//retornan los registros
 				return $r;
 			}else{
 				return [];
 			}
 		}
 
-		//metodo para verificar que un usuario no se repita
+		//Metodo para verificar que un usuario no se repita
 		public function verificarUsuarioModel($usuario){
-			//consulta
+			//Consulta para verificar que el usuario no se repita en la tabla
 			$sql = "SELECT * FROM usuarios WHERE nombre_usuario = ?";
-			// se prepara la consulta
+			// Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa la consulta
+			//Se executa la consulta
 			$stmt->execute(array($usuario));
-			//se asocian los registros a $r
+			//Se asocian los registros a $r
 			$r = $stmt->fetch();
+			//Una condicion para que devuelva la respuesta
 			if($r){
 				return true;
 			}else{
@@ -93,15 +94,15 @@
 			}
 		}
 
-		//metodo para actualizar la informacion de un usuario
+		//Metodo para actualizar la informacion de un usuario
 		public function updateUsuarioModel($nombre,$paterno,$materno,$email,$contraseña,$imagen,$id){
-			//si el usario no ingreso una imagen :
+			//Si el usario no ingreso una imagen :
 			if($imagen=="imagen"){
-				//update
+				//Consulta para actualizar los datos del usuario
 				$sql = "UPDATE usuarios SET nombre = :nombre, paterno = :paterno, materno = :materno, correo = :email, password = :password WHERE id = :id";
-				//se prepara la sentencia
+				//Se prepara la sentencia
 				$stmt = Conexion::conectar()->prepare($sql);
-				//se manda los parametros del metodo a la sentencia a ejecutar
+				//Se manda los parametros del metodo a la sentencia a ejecutar del usuario
 				$stmt->bindParam(":nombre",$nombre);
 				$stmt->bindParam(":paterno",$paterno);
 				$stmt->bindParam(":materno",$materno);
@@ -109,11 +110,11 @@
 				$stmt->bindParam(":password",$contraseña);
 				$stmt->bindParam(":id",$id);
 			}else{
-				//si el usuario ingreso una imagen para actualizar
+				//Si el usuario ingreso una imagen una consulta para poder actualizarla
 				$sql = "UPDATE usuarios SET nombre = :nombre, paterno = :paterno, materno = :materno, correo = :email, password = :password, ruta_img = :imagen WHERE id = :id";
-				//se prepara la consulta
+				//Se prepara la consulta
 				$stmt = Conexion::conectar()->prepare($sql);
-				//se mandan los parametros del metodo a la sentencia a ejecutar
+				//Se mandan los parametros del metodo a la sentencia a ejecutar del usuario
 				$stmt->bindParam(":nombre",$nombre);
 				$stmt->bindParam(":paterno",$paterno);
 				$stmt->bindParam(":materno",$materno);
@@ -123,25 +124,25 @@
 				$stmt->bindParam(":id",$id);
 			}
 
-			//se ejecuta
+			//Una condicion para ejecutar la sentencia y saber si el usuario se actualizo o no
 			if($stmt->execute()){
-				//exitosamente
+				//Se actualizo
 				return true;
 			}else{
-				//fallo 
+				//No se actualizo
 				return false;
 			}
 		}
 
-		//metodo para actualizar un producto
+		//Metodo para actualizar un producto
 		public function updateProductoModel($nombre,$categoria,$precio,$imagen,$id){
-			//si no se ingreso una imagen
+			//Si no se ingreso una imagen
 			if($imagen=="imagen"){
-				//sentencia update
+				//Consulta para actualizar los datos del producto
 				$sql = "UPDATE productos SET nombre = :nombre, categoria = :categoria, precio = :precio WHERE id = :id";
-				//se prepara la sentencia
+				//Se prepara la sentencia
 				$stmt = Conexion::conectar()->prepare($sql);
-				//se mandan los parametros del metodo a la sentencia update
+				//Se mandan los parametros del metodo a la sentencia update
 				$stmt->bindParam(":nombre",$nombre);
 				$stmt->bindParam(":categoria",$categoria);
 				$stmt->bindParam(":precio",$precio);
@@ -151,7 +152,7 @@
 				$sql = "UPDATE productos SET nombre = :nombre, categoria = :categoria, precio = :precio, ruta_img = :imagen WHERE id = :id";
 				//se prepara la sentencia update
 				$stmt = Conexion::conectar()->prepare($sql);
-				//se mandan los parametros del metodo a la sentencia update
+				//Se mandan los parametros del metodo a la sentencia a ejecutar del producto
 				$stmt->bindParam(":nombre",$nombre);
 				$stmt->bindParam(":categoria",$categoria);
 				$stmt->bindParam(":precio",$precio);
@@ -159,78 +160,81 @@
 				$stmt->bindParam(":id",$id);
 			}
 
-			//se ejecuta el update
+			//Una condicion para ejecutar la sentencia y saber si el usuario se actualizo o no
 			if($stmt->execute()){
-				//exitoso
+				//Se actualizo
 				return true;
 			}else{
-				//fallo
+				//No se actualizo
 				return false;
 			}
 		}
 
-		//metodo para registrar un usuario 
+		//Metodo para registrar un usuario 
 		public function RegistrarUsuarioModel($nombre,$paterno,$materno,$email,$usuario,$contraseña,$imagen){
-			//sentencia insert
+			//Consulta para poder insertar el usuario
 			$sql = "INSERT INTO usuarios (nombre,paterno,materno,nombre_usuario,password,correo,fecha_registro,ruta_img) VALUES (?,?,?,?,?,?,CURDATE(),?)";
 
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
 
-			//se ejecuta
+			//Esta condición es para ejecutar la sentencia mandando un arreglo de los datos del usuario y si se agrego o no
 			if($stmt->execute(array($nombre,$paterno,$materno,$usuario,$contraseña,$email,$imagen))){
-				//exitosamente
+				//Se agrego usuario
 				return true;
 			}else{
-				//fallo
+				//No se agrego usuario
 				return false;
 			}
 		}
 
-		//metodo para verificar que el codigo de un producto no se repita
+		//Metodo para verificar que el codigo de un producto no se repita
 		public function verificarCodigoModel($codigo){
-			//sentencia para buscar el codigo en la tabla productos
+			//Sentencia para buscar el codigo en la tabla productos
 			$sql = "SELECT * FROM productos WHERE codigo = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia, mandando como parametro el codigo del producto que no se desea que se repita
+			//Se ejecuta la sentencia, mandando como parametro el codigo del producto que no se desea que se repita
 			$stmt->execute(array($codigo));
-			//se asocia lo encontrado
+			//Se asocia los registros encontrados
 			$r = $stmt->fetch();
+			//Una condición para ver si el codigo se repite o no
 			if($r){
-				//se repite el codigo
+				//Se repite el codigo
 				return true;
 			}else{
-				//no se repite el codigo
+				//No se repite el codigo
 				return false;
 			}
 		}
 
-		//metodo para registrar un producto
+		//Metodo para registrar un producto
 		public function RegistrarProductoModel($codigo,$nombre,$precio,$stock,$categoria,$imagen){
-			//sentencia para insertar un producto en la tabla productos
+			//Consulta para insertar un producto en la tabla productos
 			$sql = "INSERT INTO productos (codigo,nombre,fecha_agregado,precio,stock,categoria,ruta_img) VALUES (?,?,CURDATE(),?,?,?,?)";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia insert
+			//Esta condición es para ejecutar la sentencia mandando un arreglo de los datos del producto y si se agrego o no
 			if($stmt->execute(array($codigo,$nombre,$precio,$stock,$categoria,$imagen))){
-				//exitosamente
+				//Se agrego producto
 				return true;
 			}else{
-				//fallo
+				//No se agrego producto
 				return false;
 			}
 		}
 
-		//metodo para obtener la informacion de una categoria
+		//Metodo para obtener la informacion de una categoria
 		public function getInfoCategoryModel($id){
-			//consulta
+			//Consulta para conseguir el idde la categoria de la tabla categorias
 			$sql = "SELECT * FROM categorias WHERE id = ?";
 			//se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa
+			//Se executa
 			$stmt->execute(array($id));
+			//Se asocia los registros de la categoria
 			$r = $stmt->fetch();
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{
@@ -240,15 +244,15 @@
 
 		//metodo para obtner la infromacion de un producto
 		public function getInfoProductoModel($id){
-			//consulta por el id
+			//Consulta para conseguir el idde el producto de la tabla productos
 			$sql = "SELECT * FROM productos WHERE id = ?";
-			//se prepara la consutla
+			//Se prepara la consutla
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la consulta
+			//Se ejecuta la consulta
 			$stmt->execute(array($id));
-			//se asocia la consulta
+			//Se asocia la consulta
 			$r = $stmt->fetch();
-
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{
@@ -256,81 +260,85 @@
 			}
 		}
 
-		//metodo para agregar una categoria
+		//Metodo para agregar una categoria
 		public function agregarCategoriaModel($datos){
-			//se prepara la consulta insert
+			//Una consulta para agregar las categorias y la prepara antes de enviar los parametros
 			$stmt = Conexion::conectar()->prepare("INSERT INTO categorias (nombre,descripcion,fecha_agregado) VALUES (:nombre,:descripcion,CURDATE())");
-			//se mandan los parametros necesarios para el registro
+			//Se mandan los parametros necesarios para el registro
 			$stmt->bindParam(":nombre", $datos["nombre_categoria"] , PDO::PARAM_STR);
 			$stmt->bindParam(":descripcion",$datos["descripcion_categoria"],PDO::PARAM_STR);
-			//se ejecuta el insert 
+			//Se ejecuta la consulta de agregar categoria
 			return $stmt->execute();
 		}
 
-		//metodo para actualizar una categoria
+		//Metodo para actualizar una categoria
 		public function updateCategoriaModel($nombre,$descripcion,$id){
-			//sentancia update
+			//Una consulta para poder actualizar los datos de la categoria que se quiere actualizar
 			$sql = "UPDATE categorias SET nombre = :nombre, descripcion = :descripcion WHERE id = :id";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se mandan los parametros a las sentencia
+			//Se mandan los parametros a las sentencia
 			$stmt->bindParam(":nombre",$nombre);
 			$stmt->bindParam(":descripcion",$descripcion);
 			$stmt->bindParam(":id",$id);
-			//se ejecuta la actualizacion
+			//Se ejecuta la consulta para verificar si la categoria se actualizo correcatemento o no
 			if($stmt->execute()){
-				//exitosamente
+				//Se actualiza la categoria
 				return true;
 			}else{
-				//fallo
+				//No se actualiza la categoria
 				return false;
 			}
 
 		}
 
-		//metodo para insertar un registro al historial de los productos
+		//Metodo para insertar un registro al historial de los productos
 		public function HistorialModel($producto,$usuario,$nota,$referencia,$cantidad,$tipo){
-			//sentencia insert
+			//Una consulta para poder agregar los historiales del producto
 			$sql = "INSERT INTO historiales (producto,usuario,fecha,hora,nota,referencia,cantidad,tipo_registro) VALUES (?,?,CURDATE(),CURTIME(),?,?,?,?)";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt= Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia insert
+			//Esta condición es para ejecutar la sentencia mandando un arreglo de los datos del producto para agregar al historial y si se agrego o no
 			if($stmt->execute(array($producto,$usuario,$nota,$referencia,$cantidad,$tipo))){
+				//Se agrega el historial
 				return true;
 			}else{
+				//No se agrega el historial
 				return false;
 			}
 		}
 
-		//metodo para actualizar el stock de un producto añadiendo una determinada cantidad
+		//Metodo para actualizar el stock de un producto añadiendo una determinada cantidad
 		public function HistorialAdd($id,$cantidad){
-			//sentencia update
+			//Consulta para poder actualizar y añadir la cantidad de productos del stock
 			$sql = "UPDATE productos SET stock = stock + ? WHERE id = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa la sentencia
+			//Se executa la sentencia
 			$stmt->execute(array($cantidad,$id));
 		}
 
-		//metodo para actualizar el stock de un producto quitandole una determinada cantidad
+		//Metodo para actualizar el stock de un producto quitandole una determinada cantidad
 		public function HistorialRemove($id,$cantidad){
-			//sentencia update
+			///Consulta para poder quitar y añadir la cantidad de productos del stock
 			$sql = "UPDATE productos SET stock = stock - ? WHERE id = ?";
-			//se prepara la consulta
+			//Se prepara la consulta
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se executa la sentencia
+			//Se executa la sentencia
 			$stmt->execute(array($cantidad,$id));
 		}
 
-		//metodo para obtener la informacion de un producto
+		//Metodo para obtener la informacion de un producto
 		public function ProductModel($codigo){
-			//sentencia
+			//Consulta para poder llamar los productos por codigo
 			$sql = "SELECT * FROM productos WHERE codigo = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia
+			//Se ejecuta la sentencia
 			$stmt->execute(array($codigo));
+			//Se asocia la consulta
 			$r = $stmt->fetch();
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{
@@ -338,56 +346,64 @@
 			}
 		}
 
-		//metodo para borrar un usuario especifico
+		//Metodo para borrar un usuario especifico
 		public function deleteUserModel($id){
+			//Una consulta para poder eliminar el usuario mediante el id
 			$sql = "DELETE FROM usuarios WHERE id = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia
+			//Esta condición es para ejecutar la sentencia mandando un arreglo de los datos del usuario para saber si se elimino o no
 			if($stmt->execute(array($id))){
+				//Usuario eliminado
 				return true;
 			}else{
+				//Usuario no eliminado
 				return false;
 			}
 		}
 
-		//metodo para borrar una categoria especifica
+		//Metodo para borrar una categoria especifica
 		public function deleteCategoriaModel($id){
-			//sentencia delete
+			//Una consulta para poder eliminar la categoria mediante el id
 			$sql = "DELETE FROM categorias WHERE id = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia
+			//Esta condición es para ejecutar la sentencia mandando un arreglo de los datos de la categoria para saber si se elimino o no
 			if($stmt->execute(array($id))){
+				//Categoria eliminada
 				return true;
 			}else{
+				//Categoria no eliminada
 				return false;
 			}
 		}
 
-		//metodo para borrar una producto especifica
+		//Metodo para borrar una producto especifica
 		public function deleteProductoModel($id){
-			//sentencia delete
+			//Una consulta para poder eliminar el producto mediante el id
 			$sql = "DELETE FROM productos WHERE id = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia
+			//Se ejecuta la sentencia
 			if($stmt->execute(array($id))){
+				//Producto eliminado
 				return true;
 			}else{
+				//Producto no eliminado
 				return false;
 			}
 		}
 
-		//metodo para obtener el historial de un producto
+		//Metodo para obtener el historial de un producto
 		public function getHistorialModel($producto){
+			//Una consulta para conseguir el historial del producto
 			$sql = "SELECT * FROM historiales WHERE producto = ?";
-			//se prepara la sentencia
+			//Se prepara la sentencia
 			$stmt = Conexion::conectar()->prepare($sql);
-			//se ejecuta la sentencia
+			//Se ejecuta la sentencia
 			$stmt->execute(array($producto));
 			$r = $stmt->fetchAll();
-
+			//Una condicion para que devuelva la respuesta o un array vacio
 			if($r){
 				return $r;
 			}else{

@@ -1,9 +1,9 @@
 <?php  
-    $controller = new MvcController(); //controlador
-    //obtener la informacion de un usuario
+    $controller = new MvcController(); //Llamando la instansia del controlador
+    //Obtener la informacion de un usuario
     $info_user = $controller->getInfoUserController($_GET['id']);
     if(isset($_POST['nombre'])){
-        //mandar a actualizar con el metodo del controlador
+        //Mandar a actualizar con el metodo del controlador
         $controller->updateUserController($_GET['id']);
     }
 ?>
@@ -38,6 +38,7 @@
                         </div>    
                         <div class="card-block">
 
+                            <!--Crea el formulario del formulario de editar categoria mediante el metodo post y con ecriptación para poder guardar una imagen-->
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-2"></div>

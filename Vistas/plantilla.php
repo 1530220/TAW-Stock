@@ -1,5 +1,7 @@
-<?php  
+<?php 
+    //Iniciar la sesión del usuario 
     session_start();
+    //Requiere los controlodores y modelos para poder hacer el llamado de una consulta o vista
     require_once "../Controladores/controlador.php";
     require_once "../Modelos/enlaces.php";
     require_once "../Modelos/crud.php";
@@ -10,6 +12,8 @@
     <head>
     <meta charset="utf-8">
     <title>Sistema de Control de Inventarios</title>
+    <!--Manda a llamar los componentes css para el diseño de la plantilla-->
+
     <link rel="icon" href="../Diseños/assets/images/abc.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../Diseños/components/bootstrap/css/bootstrap.min.css">
@@ -82,8 +86,11 @@
                             
                             <li class="user-profile header-notification">
                                 <a href="#!">
+                                    <!-- Se agrega una imagen al usaurio -->
                                     <img src="<?php echo $_SESSION['imagen']; ?>" class="img-radius" alt="User-Profile-Image">
-                                    <span><?php echo $_SESSION['usuario'] ?></span>
+                                    <span><?php 
+                                    //Aquí inicia la sesión del usuario
+                                    echo $_SESSION['usuario'] ?></span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -104,16 +111,18 @@
             <div class="pcoded-wrapper">
 
 
-            <?php  include "Paginas/navegacion.php";?>
+            <?php  
+            //Incluye la navegación para la platilla a mostrar
+            include "Paginas/navegacion.php";?>
 
 
 
             <div class="pcoded-content">
                     <div class="pcoded-inner-content">
                         <?php  
-                            //mostraremos un controlador que muestra la plantilla
+                            //Mostraremos un controlador que muestra la plantilla
                             $mvc = new MvcController();
-                            //mostramos la funcion
+                            //Mostramos la funcion
                             $mvc->enlacesPaginasController();
                         ?>
 
@@ -125,7 +134,7 @@
 
 </div>
 
-    
+<!-- Manda a llamar los componente de javascript -->
 <script type="text/javascript" src="../Diseños/components/jquery/js/jquery.min.js"></script>
 <script type="text/javascript" src="../Diseños/components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="../Diseños/components/popper.js/js/popper.min.js"></script>

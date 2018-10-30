@@ -1,15 +1,15 @@
 
 <?php  
-    $controller = new MvcController();
-    //bandera para cuando ya se ha realizado la eliminacion de la categoria
+    $controller = new MvcController();//Llama la instancia del controlador
+    //Bandera para cuando ya se ha realizado la eliminacion de la categoria
     $flag = 0;
     $id = $_GET['id'];
     if(isset($_POST['contraseña'])){
-        //obtenr la contraseña ingresada
+        //Obtener la contraseña ingresada
         $contraseña = $_POST['contraseña'];
-        //validar que sea correcta
+        //Validar que sea correcta
         if($contraseña==$_SESSION['contraseña']){
-            //proceder a ejecutar el metodo del controlador para borrar una categoria
+            //Proceder a ejecutar el metodo del controlador para borrar una categoria
             if($controller->deleteCategoriaController($id)==true){
                 $flag=1;
             }else{

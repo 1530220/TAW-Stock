@@ -1,6 +1,9 @@
-<?php  
+<?php
+    //Una condición para enviar los datos del usuario 
     if($_POST){
+        //Manda llamar la instancia del controlador
         $guardarDatos = new MvcController();
+        //Llama la función de agregar la categoria
         $guardarDatos->RegistrarUsuarioController();
     }
 ?>
@@ -34,6 +37,7 @@
                         </div>    
                         <div class="card-block">
 
+                            <!--Crea el formulario del formulario de agregar producto mediante el metodo post y con ecriptación para poder guardar una imagen-->
                             <form method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-sm-2"></div>

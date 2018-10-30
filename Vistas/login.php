@@ -1,14 +1,20 @@
 <?php  
+    //Iniciar la sesión del usuario 
     session_start();
+    //Requiere los controlodores y modelos para poder hacer el llamado de una consulta o vista
     require_once "../Controladores/controlador.php";
     require_once "../Modelos/enlaces.php";
     require_once "../Modelos/crud.php";
-
+    //Condición si el usuario inicio sesión
     if(isset($_SESSION['usuario'])){
+        //Si la inicio se inicio con el usuario redirige a la plantilla
         header("location:plantilla.php");
     }
+    //Condición para llamar los parametros del formulario
     if($_POST){
+        //Inicia una instancia del controlador
         $log = new MvcController();
+        //Llama a la función de Login de la instacia
         $log->login(); 
     }
 ?>
@@ -18,6 +24,7 @@
     <head>
     <meta charset="utf-8">
     <title>Iniciar Sesion</title>
+    <!--Manda a llamar los componentes css para el diseño de la plantilla-->
     <link rel="icon" href="../Diseños/assets/images/inventario.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../Diseños/components/bootstrap/css/bootstrap.min.css">
@@ -36,6 +43,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="login-card card-block auth-body mr-auto ml-auto">
+
+                        <!--Crea el formulario del login mediante el metodo post-->
                         <form method="post" class="md-float-material">
                             <div class="auth-box">
                                 <div class="row m-b-20">
@@ -73,7 +82,7 @@
     <div class="footer bg-inverse">
         <p class="text-center">Copyright &copy; 2018 TAW. Miguel Perez - Rodrigo Rojas.</p>
     </div>
-
+    <!--Manda a llamar los componentes de javascript-->
     <script type="text/javascript" src="../Diseños/components/jquery/js/jquery.min.js"></script>
     <script type="text/javascript" src="../Diseños/components/jquery-ui/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Diseños/components/popper.js/js/popper.min.js"></script>
